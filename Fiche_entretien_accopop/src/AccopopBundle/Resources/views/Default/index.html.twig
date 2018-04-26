@@ -1,0 +1,155 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <div class="wrapper">
+
+            <nav id="sidebar">
+                <!-- Sidebar Header -->
+                <div class="sidebar-header">
+                    <h1><img src="{{ asset('bundles/accopop/images/logo-accopilot.png') }}"/></h1>
+                </div>
+
+            <!-- Sidebar Links -->
+                <h2>Entretien des véhicules</h2>
+                <ul class="list-unstyled components">
+                    <li><i class="fa fa-file"></i><a href="#">Fiche d'entretien</a></li>
+                </ul>
+            </nav>
+
+            <div id="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                        <div class="deconnexion">
+                          <li>
+                            <a href="/logout"><i class="fa fa-user"></i> {{ username }}</a>
+                            <ul class="list-deco">
+                              <li class="hide"><a href="">Déconnexion</a></li>
+                            </ul>
+                          </li>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container-full">
+                  <h2 class="col-lg-12 text-center">Formulaire fiche d'entretien</h2>
+                   <div class="row" >
+                     <div class="col-lg-12">
+                       <div class="col-lg-12 block-one">
+
+                         <form class="col-lg-12 form-compagnie" method="post" action="sendForm" id="form-info">
+                            <legend>Renseignement sur le véhicule:</legend>
+                               <div class="form-group col-md-6">
+                                 <label for="marque">Marque</label>
+                                 <input type="text" class="form-control" name="marque" id="marque" placeholder="Marque">
+                               </div>
+                               <div class="form-group col-md-6">
+                                 <label for="modele">Modele</label>
+                                 <input type="text" class="form-control" name="modele" id="modele" placeholder="Modele">
+                               </div>
+                               <div class="form-group col-md-6">
+                                     <label for="localisation">Localisation du véhicule</label>
+                                     <input type="text" class="form-control" name="localisation" id="localisation" placeholder="Localisation du véhicule">
+                               </div>
+                               <div class="form-group col-md-6">
+                                     <label for="propriete">Propriété de</label>
+                                     <input type="text" class="form-control" name="propriete" id="propriete" placeholder="Propriété de">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="annee">Année</label>
+                                     <input type="text" class="form-control" name="annee" id="annee" placeholder="Année">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="plaque">Plaque</label>
+                                     <input type="text" class="form-control" name="plaque" id="plaque" placeholder="Plaque">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="unite">N° d'unité</label>
+                                     <input type="text" class="form-control" name="unite" id="unite" placeholder="N° d'unité">
+                               </div>
+                               <div class="form-group col-md-12">
+                                     <label for="niv">N.I.V</label>
+                                    <input type="text" class="form-control" name="niv" id="niv" placeholder="N.I.V">
+                               </div>
+                               <legend>Type de véhicule:</legend>
+                               <div class="form-group col-md-12">
+                                     <label for="vehicule">Véhicule</label>
+                                     <input type="text" class="form-control" name="vehicule" id="vehicule" placeholder="Véhicule">
+                               </div>
+                               <legend>Entretien preventif:</legend>
+                               <div class="form-group col-md-4">
+                                     <label for="date">Date</label>
+                                     <input type="date" class="form-control" name="date" id="date" placeholder="Date">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="kilometre">Kilométres</label>
+                                     <input type="text" class="form-control" name="kilometre" id="kilometre" placeholder="Kilométres">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="hrmecanique">Heure mécanique</label>
+                                     <input type="text" class="form-control" name="hrmecanique" id="hrmecanique" placeholder="Heure mécanique">
+                               </div>
+                               <legend>Prochain Entretien preventif:</legend>
+                               <div class="form-group col-md-4">
+                                     <label for="prochaindate">Date</label>
+                                     <input type="date" class="form-control" name="prochaindate" id="prochaindate" placeholder="Date">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="prochainkilometre">Kilométres</label>
+                                     <input type="text" class="form-control" name="prochainkilometre" id="prochainkilometre" placeholder="Kilométres">
+                               </div>
+                               <div class="form-group col-md-4">
+                                     <label for="prochainhrmecanique">Heure mécanique</label>
+                                     <input type="text" class="form-control" name="prochainhrmecanique" id="prochainhrmecanique" placeholder="Heure mécanique">
+                               </div>
+                               <div class="form-group col-md-12 text-center" id="btn-suivant">
+                                 <button class="btn btn-primary" type="button" name="button">Suivant ></button>
+                               </div>
+                             </div>
+                                <div class="col-lg-12 block-two">
+                                  <h3>Element à inspecter tout les 6 mois</h3>
+                                      <div class="col-lg-12 invehicule">
+                                        <legend>Dans le véhicule:</legend>
+                                        {% for item in invehicule %}
+                                        <div class="form-group col-md-4">
+                                          <p><strong>{{ item.inspectElementIn }}:</strong></p>
+                                          <input type="radio" id="{{ item.inspectElementIn }}" name="{{ item.inspectElementIn }}" value="{{ item.inspectElementIn }} : conforme" checked><label class="bold" for="{{ item.inspectElementIn }}"> Conforme </label>
+                                          <input type="radio" id="{{ item.inspectElementIn }} . 1" name="{{ item.inspectElementIn }}" value="{{ item.inspectElementIn }} : non conforme"><label class="bold" for="{{ item.inspectElementIn }} . 1"> Non Conforme </label>
+                                        </div>
+                                        {% endfor %}
+                                      </div>
+                                      <div class="col-lg-12 aroundvehicule">
+                                        <legend>Autour du véhicule:</legend>
+                                        {% for item in aroundvehicule %}
+                                        <div class="form-group col-md-4">
+                                          <p><strong>{{ item.inspectElementAround }}:</strong></p>
+                                          <input type="radio" id="{{ item.inspectElementAround }}" name="{{ item.inspectElementAround }}" value="{{ item.inspectElementAround }}: conforme" checked><label class="bold" for="{{ item.inspectElementAround }}"> Conforme </label>
+                                          <input type="radio" id="{{ item.inspectElementAround }} . 1" name="{{ item.inspectElementAround }}" value="{{ item.inspectElementAround }}: non conforme"><label class="bold" for="{{ item.inspectElementAround }} . 1" > Non Conforme </label>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="form-group col-md-12 text-center" id="btn-fiche">
+                                          <span class="btn btn-primary" id="btn-retour">< Retour</span>
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                      </div>
+                                  </div>
+
+
+
+                     </form>
+                    </div>
+                  </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+
+
+{% endblock %}

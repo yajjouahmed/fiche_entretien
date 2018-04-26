@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# Layout for PDF files #}
+    <div id="content" class="content">
+      <div class="fichier-pdf">
+        <h1>Fiche d'entretien:</h1>
+        <div class="renseignement">
+          <h2>Renseignement sur le véhicule:</h2>
+          <p class="back-para">Marque: <strong>{{ requete.marque }}</strong></p>
+          <p class="">Modele: <strong>{{ requete.modele }}</strong></p>
+          <p class="">Localisation du véhicule: <strong>{{ requete.localisation }}</strong></p>
+          <p class="">Propriété de: <strong>{{ requete.propriete }}</strong></p>
+          <p class="">Année: <strong>{{ requete.annee }}</strong></p>
+          <p class="">Plaque: <strong>{{ requete.plaque }}</strong></p>
+          <p class="">N° d'unité: <strong>{{ requete.unite }}</strong></p>
+          <p class="">N.I.V: <strong>{{ requete.niv }}</strong></p>
+          <p class="">Type de véhicule: <strong>{{ requete.vehicule }}</strong></p>
+          <p class="">Date: <strong>{{ requete.date }}</strong></p>
+          <p class="">Kilométres: <strong>{{ requete.kilometre }}</strong></p>
+          <p class="">Heure mécanique: <strong>{{ requete.hrmecanique }}</strong></p>
+          <p class="">Date: <strong>{{ requete.prochaindate }}</strong></p>
+          <p class="">Kilométres: <strong>{{ requete.prochainkilometre }}</strong></p>
+          <p class="">Heure mécanique: <strong>{{ requete.prochainhrmecanique }}</strong></p>
+        </div>
+        <div class="inspection">
+          <h2>Element à inspecter tout les 6 mois:</h2>
+            <h3>Dans le véhicule:</h3>
+              <div class="bloc-confirm">
+                  {% for item in requete|slice(15) %}
+                      <p class="">{{ item }}</p>
+                  {% endfor %}
+              </div>
+        </div>
+        <input type="text" name="" value="{{ username }}" id="show-user">
+        <div class="savePdf">
+          <button id="getPdf">PDF File</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
